@@ -1,3 +1,4 @@
+let cases = JSON.parse(localStorage.getItem("cases")) || [];
 const form = document.getElementById("repairForm");
 const caseList = document.getElementById("caseList");
 
@@ -11,26 +12,24 @@ form.addEventListener("submit", function(event) {
   const phone = document.getElementById("phone").value;
   const type = document.getElementById("type").value;
   const detail = document.getElementById("detail").value;
+  cases.push({
+  id: caseId,
+  type: type,
+  status: "รับเรื่องแล้ว"
+});
+
+localStorage.setItem("cases", JSON.stringify(cases));
 
   const caseCard = document.createElement("div");
   caseCard.className = "case-card";
 
-  caseCard.innerHTML = `
+caseCard.innerHTML = `
   <div class="card-header">
     <h3>${caseId}</h3>
     <span class="status status-new">รับเรื่องแล้ว</span>
   </div>
 
-  <p><strong>ผู้แจ้ง:</strong> ${name}</p>
-  <p><strong>บ้านเลขที่:</strong> ${house}</p>
-  <p><strong>เบอร์โทร:</strong> ${phone}</p>
-  <p><strong>ประเภท:</strong> ${type}</p>
-  <p><strong>รายละเอียด:</strong> ${detail}</p>
-
-  <div class="actions">
-    <button onclick="updateStatus(this, 'processing')">กำลังดำเนินการ</button>
-    <button onclick="updateStatus(this, 'done')">เสร็จสิ้น</button>
-  </div>
+  <p><strong>ประเภทปัญหา:</strong> ${type}</p>
 `;
 
   caseList.prepend(caseCard);
@@ -65,19 +64,8 @@ if (renovationForm && renovationList) {
     <span class="status status-new">รอตรวจสอบคำร้อง</span>
   </div>
 
-  <p><strong>ประเภท:</strong> รีโนเวท</p>
-  <p><strong>ผู้ยื่นคำร้อง:</strong> ${name}</p>
-  <p><strong>บ้านเลขที่:</strong> ${house}</p>
-  <p><strong>เบอร์โทร:</strong> ${phone}</p>
+  <p><strong>ประเภท:</strong> คำร้องรีโนเวท</p>
   <p><strong>ประเภทงาน:</strong> ${type}</p>
-  <p><strong>วันที่เริ่ม:</strong> ${start}</p>
-  <p><strong>วันที่สิ้นสุด:</strong> ${end}</p>
-  <p><strong>รายละเอียด:</strong> ${detail}</p>
-
-  <div class="actions">
-    <button onclick="updateStatus(this, 'processing')">กำลังดำเนินการ</button>
-    <button onclick="updateStatus(this, 'done')">เสร็จสิ้น</button>
-  </div>
 `;
     function updateStatus(button, status) {
   const card = button.closest(".case-card");
@@ -114,3 +102,24 @@ function updateStatus(button, status) {
     statusEl.className = "status status-done";
   }
 }
+function renderCases() {
+  caseList.innerHTML = "";
+
+  cases.forEach(c => {
+    const div = document.createElement("div");
+    div.className = "case-card";
+
+    div.innerHTML = `
+      <div class="card-header">
+        <h3>${c.id}</h3>
+        <span class="status status-new">${c.status}</span>
+      </div>
+
+      <p><strong>ประเภทปัญหา:</strong> ${c.type}</p>
+    `;
+
+    caseList.prepend(div);
+  });
+}
+
+renderCases();
