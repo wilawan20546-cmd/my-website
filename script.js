@@ -1,4 +1,5 @@
 let cases = JSON.parse(localStorage.getItem("cases")) || [];
+let renovations = JSON.parse(localStorage.getItem("renovations")) || [];
 const form = document.getElementById("repairForm");
 const caseList = document.getElementById("caseList");
 
@@ -54,6 +55,13 @@ if (renovationForm && renovationList) {
     const start = document.getElementById("renoStart").value;
     const end = document.getElementById("renoEnd").value;
     const detail = document.getElementById("renoDetail").value;
+    renovations.push({
+  id: requestId,
+  type: type,
+  status: "รอตรวจสอบคำร้อง"
+});
+
+localStorage.setItem("renovations", JSON.stringify(renovations));
 
     const card = document.createElement("div");
     card.className = "case-card";
@@ -123,3 +131,24 @@ function renderCases() {
 }
 
 renderCases();
+renderRenovations();
+function renderRenovations() {
+  renovationList.innerHTML = "";
+
+  renovations.forEach(function(item) {
+    const div = document.createElement("div");
+    div.className = "case-card";
+
+    div.innerHTML = `
+      <div class="card-header">
+        <h3>${item.id}</h3>
+        <span class="status status-new">${item.status}</span>
+      </div>
+
+      <p><strong>ประเภท:</strong> คำร้องรีโนเวท</p>
+      <p><strong>ประเภทงาน:</strong> ${item.type}</p>
+    `;
+
+    renovationList.prepend(div);
+  });
+}
