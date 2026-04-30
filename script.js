@@ -152,3 +152,465 @@
     </div>
   </div>
 </section>
+<header class="topbar">
+  <div class="logo">หมู่บ้านเอื้ออาทรแสมดำ</div>
+  <nav>
+    <a href="#home">หน้าแรก</a>
+    <a href="#announcements">ประกาศ</a>
+    <a href="#repair">แจ้งซ่อม</a>
+    <a href="#tracking">ติดตามงาน</a>
+    <a href="#contact">ติดต่อ</a>
+    <a href="#renovation">คำร้องรีโนเวท</a>
+  </nav>
+</header>
+
+<section id="home" class="hero">
+  <div class="hero-content">
+    <h1>ยินดีต้อนรับสู่หมู่บ้านเอื้ออาทรแสมดำ</h1>
+    <p>ศูนย์กลางข่าวสาร ประกาศ แจ้งซ่อม และการติดต่อภายในชุมชน</p>
+    <a href="#repair" class="btn">แจ้งซ่อมตอนนี้</a>
+    
+  </div>
+</section>
+
+<section class="section">
+  <h2>ข่าวล่าสุด</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>ประชุมลูกบ้าน</h3>
+      <p>ขอเชิญลูกบ้านเข้าร่วมประชุมประจำเดือน</p>
+    </div>
+    <div class="card">
+      <h3>กิจกรรมทำความสะอาด</h3>
+      <p>ร่วมกันดูแลพื้นที่ส่วนกลางให้น่าอยู่</p>
+    </div>
+    <div class="card">
+      <h3>แจ้งซ่อมไฟถนน</h3>
+      <p>บริเวณซอย 2 อยู่ระหว่างดำเนินการ</p>
+    </div>
+  </div>
+</section>
+
+<section class="section video-section">
+  <h2>วิดีโอสาระภายในหมู่บ้าน</h2>
+  <div class="video-box">
+    <iframe 
+      src="https://www.youtube.com/embed/1KMPOOHA7xg?si=v4-VG-bP1b4rNhJt"
+      title="Village Video"
+      allowfullscreen>
+    </iframe>
+  </div>
+</section>
+
+<section id="announcements" class="section">
+  <h2>ประกาศหมู่บ้าน</h2>
+  <ul class="notice-list">
+    <li>แจ้งชำระค่าน้ำประจำเดือนภายในวันที่ 10</li>
+    <li>แจ้งชำระค่าไฟพื้นที่ส่วนกลาง</li>
+    <li>กิจกรรม Big Cleaning Day วันอาทิตย์นี้</li>
+    <li>ห้ามจอดรถกีดขวางทางเข้าออก</li>
+  </ul>
+</section>
+
+<section id="repair" class="section">
+  <h2>แบบฟอร์มแจ้งซ่อม</h2>
+
+  <form id="repairForm" class="form">
+    <input type="text" id="name" placeholder="ชื่อผู้แจ้ง" required>
+    <input type="text" id="house" placeholder="บ้านเลขที่" required>
+    <input type="tel" id="phone" placeholder="เบอร์โทรศัพท์" required>
+
+    <select id="type" required>
+      <option value="">เลือกประเภทปัญหา</option>
+      <option>ไฟถนนเสีย</option>
+      <option>ท่อตัน</option>
+      <option>น้ำรั่ว</option>
+      <option>ถนนชำรุด</option>
+      <option>ขยะ / ความสะอาด</option>
+      <option>เสียงรบกวน</option>
+      <option>อื่น ๆ</option>
+    </select>
+
+    <textarea id="detail" placeholder="รายละเอียดปัญหา" required></textarea>
+
+    <button type="submit">ส่งเรื่องแจ้งซ่อม</button>
+  </form>
+</section>
+
+</section>
+<section id="renovation" class="section">
+  <h2>แบบฟอร์มคำร้องปรับปรุง / รีโนเวทห้อง</h2>
+  <p class="small-text">
+    สำหรับลูกบ้านที่ต้องการปรับปรุง ต่อเติม หรือรีโนเวทภายในห้องพัก
+  </p>
+
+  <form id="renovationForm" class="form">
+    <input type="text" id="renoName" placeholder="ชื่อผู้ยื่นคำร้อง" required>
+    <input type="text" id="renoHouse" placeholder="บ้านเลขที่ / อาคาร / ห้อง" required>
+    <input type="tel" id="renoPhone" placeholder="เบอร์โทรศัพท์" required>
+
+    <select id="renoType" required>
+      <option value="">เลือกประเภทงาน</option>
+      <option>ทาสีห้อง</option>
+      <option>ปูกระเบื้อง / พื้น</option>
+      <option>ซ่อมแซมห้องน้ำ</option>
+      <option>ติดตั้งแอร์</option>
+      <option>งานไฟฟ้า</option>
+      <option>งานประปา</option>
+      <option>ต่อเติม / กั้นห้อง</option>
+      <option>อื่น ๆ</option>
+    </select>
+
+    <input type="date" id="renoStart" required>
+    <input type="date" id="renoEnd" required>
+
+    <textarea id="renoDetail" placeholder="รายละเอียดงานที่ต้องการปรับปรุง" required></textarea>
+
+<div class="checkbox-row">
+  <input type="checkbox" id="renoAccept" required>
+  <label for="renoAccept">
+    ข้าพเจ้ารับทราบว่าต้องไม่ก่อให้เกิดความเสียหายหรือรบกวนลูกบ้านท่านอื่น
+  </label>
+</div>
+    
+    <button type="submit">ส่งคำร้องรีโนเวท</button>
+  </form>
+</section>
+
+<section id="tracking" class="section">
+  <h2>ติดตามงานแจ้งซ่อม</h2>
+  <p class="small-text">เมื่อส่งเรื่องแล้ว รายการจะแสดงที่นี่</p>
+<div id="caseList"></div>
+<div id="renovationList"></div>
+  </section>
+
+<section id="contact" class="section contact">
+  <h2>ติดต่อหมู่บ้าน</h2>
+  <div class="contact-grid">
+    <div>
+      <h3>รปภ.</h3>
+      <p>โทร: 082-992-2507 (คุณกิมฮวด)</p>
+      <p>     095-493-7550 (คุณติ๊ก)</p>
+      <p>     062-689-1567 (คุณไกรเดช)</p>
+    </div>
+    <div>
+      <h3>นิติบุคคล / สำนักงาน</h3>
+      <p>โทร: 095-814-3756</p>
+      <p>โทร: 02-453-9885</p>
+      <p>โทร: 061-703-4059</p>
+      <p>(ผจก.นิติ คุณริขิต)</p>
+    </div>
+    <div>
+      <h3>ไลน์นิติ</h3>
+      <p>LINE: 0992238674</p>
+    </div>
+  </div>
+</section>
+<header class="topbar">
+  <div class="logo">หมู่บ้านเอื้ออาทรแสมดำ</div>
+  <nav>
+    <a href="#home">หน้าแรก</a>
+    <a href="#announcements">ประกาศ</a>
+    <a href="#repair">แจ้งซ่อม</a>
+    <a href="#tracking">ติดตามงาน</a>
+    <a href="#contact">ติดต่อ</a>
+    <a href="#renovation">คำร้องรีโนเวท</a>
+  </nav>
+</header>
+
+<section id="home" class="hero">
+  <div class="hero-content">
+    <h1>ยินดีต้อนรับสู่หมู่บ้านเอื้ออาทรแสมดำ</h1>
+    <p>ศูนย์กลางข่าวสาร ประกาศ แจ้งซ่อม และการติดต่อภายในชุมชน</p>
+    <a href="#repair" class="btn">แจ้งซ่อมตอนนี้</a>
+    
+  </div>
+</section>
+
+<section class="section">
+  <h2>ข่าวล่าสุด</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>ประชุมลูกบ้าน</h3>
+      <p>ขอเชิญลูกบ้านเข้าร่วมประชุมประจำเดือน</p>
+    </div>
+    <div class="card">
+      <h3>กิจกรรมทำความสะอาด</h3>
+      <p>ร่วมกันดูแลพื้นที่ส่วนกลางให้น่าอยู่</p>
+    </div>
+    <div class="card">
+      <h3>แจ้งซ่อมไฟถนน</h3>
+      <p>บริเวณซอย 2 อยู่ระหว่างดำเนินการ</p>
+    </div>
+  </div>
+</section>
+
+<section class="section video-section">
+  <h2>วิดีโอสาระภายในหมู่บ้าน</h2>
+  <div class="video-box">
+    <iframe 
+      src="https://www.youtube.com/embed/1KMPOOHA7xg?si=v4-VG-bP1b4rNhJt"
+      title="Village Video"
+      allowfullscreen>
+    </iframe>
+  </div>
+</section>
+
+<section id="announcements" class="section">
+  <h2>ประกาศหมู่บ้าน</h2>
+  <ul class="notice-list">
+    <li>แจ้งชำระค่าน้ำประจำเดือนภายในวันที่ 10</li>
+    <li>แจ้งชำระค่าไฟพื้นที่ส่วนกลาง</li>
+    <li>กิจกรรม Big Cleaning Day วันอาทิตย์นี้</li>
+    <li>ห้ามจอดรถกีดขวางทางเข้าออก</li>
+  </ul>
+</section>
+
+<section id="repair" class="section">
+  <h2>แบบฟอร์มแจ้งซ่อม</h2>
+
+  <form id="repairForm" class="form">
+    <input type="text" id="name" placeholder="ชื่อผู้แจ้ง" required>
+    <input type="text" id="house" placeholder="บ้านเลขที่" required>
+    <input type="tel" id="phone" placeholder="เบอร์โทรศัพท์" required>
+
+    <select id="type" required>
+      <option value="">เลือกประเภทปัญหา</option>
+      <option>ไฟถนนเสีย</option>
+      <option>ท่อตัน</option>
+      <option>น้ำรั่ว</option>
+      <option>ถนนชำรุด</option>
+      <option>ขยะ / ความสะอาด</option>
+      <option>เสียงรบกวน</option>
+      <option>อื่น ๆ</option>
+    </select>
+
+    <textarea id="detail" placeholder="รายละเอียดปัญหา" required></textarea>
+
+    <button type="submit">ส่งเรื่องแจ้งซ่อม</button>
+  </form>
+</section>
+
+</section>
+<section id="renovation" class="section">
+  <h2>แบบฟอร์มคำร้องปรับปรุง / รีโนเวทห้อง</h2>
+  <p class="small-text">
+    สำหรับลูกบ้านที่ต้องการปรับปรุง ต่อเติม หรือรีโนเวทภายในห้องพัก
+  </p>
+
+  <form id="renovationForm" class="form">
+    <input type="text" id="renoName" placeholder="ชื่อผู้ยื่นคำร้อง" required>
+    <input type="text" id="renoHouse" placeholder="บ้านเลขที่ / อาคาร / ห้อง" required>
+    <input type="tel" id="renoPhone" placeholder="เบอร์โทรศัพท์" required>
+
+    <select id="renoType" required>
+      <option value="">เลือกประเภทงาน</option>
+      <option>ทาสีห้อง</option>
+      <option>ปูกระเบื้อง / พื้น</option>
+      <option>ซ่อมแซมห้องน้ำ</option>
+      <option>ติดตั้งแอร์</option>
+      <option>งานไฟฟ้า</option>
+      <option>งานประปา</option>
+      <option>ต่อเติม / กั้นห้อง</option>
+      <option>อื่น ๆ</option>
+    </select>
+
+    <input type="date" id="renoStart" required>
+    <input type="date" id="renoEnd" required>
+
+    <textarea id="renoDetail" placeholder="รายละเอียดงานที่ต้องการปรับปรุง" required></textarea>
+
+<div class="checkbox-row">
+  <input type="checkbox" id="renoAccept" required>
+  <label for="renoAccept">
+    ข้าพเจ้ารับทราบว่าต้องไม่ก่อให้เกิดความเสียหายหรือรบกวนลูกบ้านท่านอื่น
+  </label>
+</div>
+    
+    <button type="submit">ส่งคำร้องรีโนเวท</button>
+  </form>
+</section>
+
+<section id="tracking" class="section">
+  <h2>ติดตามงานแจ้งซ่อม</h2>
+  <p class="small-text">เมื่อส่งเรื่องแล้ว รายการจะแสดงที่นี่</p>
+<div id="caseList"></div>
+<div id="renovationList"></div>
+  </section>
+
+<section id="contact" class="section contact">
+  <h2>ติดต่อหมู่บ้าน</h2>
+  <div class="contact-grid">
+    <div>
+      <h3>รปภ.</h3>
+      <p>โทร: 082-992-2507 (คุณกิมฮวด)</p>
+      <p>     095-493-7550 (คุณติ๊ก)</p>
+      <p>     062-689-1567 (คุณไกรเดช)</p>
+    </div>
+    <div>
+      <h3>นิติบุคคล / สำนักงาน</h3>
+      <p>โทร: 095-814-3756</p>
+      <p>โทร: 02-453-9885</p>
+      <p>โทร: 061-703-4059</p>
+      <p>(ผจก.นิติ คุณริขิต)</p>
+    </div>
+    <div>
+      <h3>ไลน์นิติ</h3>
+      <p>LINE: 0992238674</p>
+    </div>
+  </div>
+</section>
+<header class="topbar">
+  <div class="logo">หมู่บ้านเอื้ออาทรแสมดำ</div>
+  <nav>
+    <a href="#home">หน้าแรก</a>
+    <a href="#announcements">ประกาศ</a>
+    <a href="#repair">แจ้งซ่อม</a>
+    <a href="#tracking">ติดตามงาน</a>
+    <a href="#contact">ติดต่อ</a>
+    <a href="#renovation">คำร้องรีโนเวท</a>
+  </nav>
+</header>
+
+<section id="home" class="hero">
+  <div class="hero-content">
+    <h1>ยินดีต้อนรับสู่หมู่บ้านเอื้ออาทรแสมดำ</h1>
+    <p>ศูนย์กลางข่าวสาร ประกาศ แจ้งซ่อม และการติดต่อภายในชุมชน</p>
+    <a href="#repair" class="btn">แจ้งซ่อมตอนนี้</a>
+    
+  </div>
+</section>
+
+<section class="section">
+  <h2>ข่าวล่าสุด</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>ประชุมลูกบ้าน</h3>
+      <p>ขอเชิญลูกบ้านเข้าร่วมประชุมประจำเดือน</p>
+    </div>
+    <div class="card">
+      <h3>กิจกรรมทำความสะอาด</h3>
+      <p>ร่วมกันดูแลพื้นที่ส่วนกลางให้น่าอยู่</p>
+    </div>
+    <div class="card">
+      <h3>แจ้งซ่อมไฟถนน</h3>
+      <p>บริเวณซอย 2 อยู่ระหว่างดำเนินการ</p>
+    </div>
+  </div>
+</section>
+
+<section class="section video-section">
+  <h2>วิดีโอสาระภายในหมู่บ้าน</h2>
+  <div class="video-box">
+    <iframe 
+      src="https://www.youtube.com/embed/1KMPOOHA7xg?si=v4-VG-bP1b4rNhJt"
+      title="Village Video"
+      allowfullscreen>
+    </iframe>
+  </div>
+</section>
+
+<section id="announcements" class="section">
+  <h2>ประกาศหมู่บ้าน</h2>
+  <ul class="notice-list">
+    <li>แจ้งชำระค่าน้ำประจำเดือนภายในวันที่ 10</li>
+    <li>แจ้งชำระค่าไฟพื้นที่ส่วนกลาง</li>
+    <li>กิจกรรม Big Cleaning Day วันอาทิตย์นี้</li>
+    <li>ห้ามจอดรถกีดขวางทางเข้าออก</li>
+  </ul>
+</section>
+
+<section id="repair" class="section">
+  <h2>แบบฟอร์มแจ้งซ่อม</h2>
+
+  <form id="repairForm" class="form">
+    <input type="text" id="name" placeholder="ชื่อผู้แจ้ง" required>
+    <input type="text" id="house" placeholder="บ้านเลขที่" required>
+    <input type="tel" id="phone" placeholder="เบอร์โทรศัพท์" required>
+
+    <select id="type" required>
+      <option value="">เลือกประเภทปัญหา</option>
+      <option>ไฟถนนเสีย</option>
+      <option>ท่อตัน</option>
+      <option>น้ำรั่ว</option>
+      <option>ถนนชำรุด</option>
+      <option>ขยะ / ความสะอาด</option>
+      <option>เสียงรบกวน</option>
+      <option>อื่น ๆ</option>
+    </select>
+
+    <textarea id="detail" placeholder="รายละเอียดปัญหา" required></textarea>
+
+    <button type="submit">ส่งเรื่องแจ้งซ่อม</button>
+  </form>
+</section>
+
+</section>
+<section id="renovation" class="section">
+  <h2>แบบฟอร์มคำร้องปรับปรุง / รีโนเวทห้อง</h2>
+  <p class="small-text">
+    สำหรับลูกบ้านที่ต้องการปรับปรุง ต่อเติม หรือรีโนเวทภายในห้องพัก
+  </p>
+
+  <form id="renovationForm" class="form">
+    <input type="text" id="renoName" placeholder="ชื่อผู้ยื่นคำร้อง" required>
+    <input type="text" id="renoHouse" placeholder="บ้านเลขที่ / อาคาร / ห้อง" required>
+    <input type="tel" id="renoPhone" placeholder="เบอร์โทรศัพท์" required>
+
+    <select id="renoType" required>
+      <option value="">เลือกประเภทงาน</option>
+      <option>ทาสีห้อง</option>
+      <option>ปูกระเบื้อง / พื้น</option>
+      <option>ซ่อมแซมห้องน้ำ</option>
+      <option>ติดตั้งแอร์</option>
+      <option>งานไฟฟ้า</option>
+      <option>งานประปา</option>
+      <option>ต่อเติม / กั้นห้อง</option>
+      <option>อื่น ๆ</option>
+    </select>
+
+    <input type="date" id="renoStart" required>
+    <input type="date" id="renoEnd" required>
+
+    <textarea id="renoDetail" placeholder="รายละเอียดงานที่ต้องการปรับปรุง" required></textarea>
+
+<div class="checkbox-row">
+  <input type="checkbox" id="renoAccept" required>
+  <label for="renoAccept">
+    ข้าพเจ้ารับทราบว่าต้องไม่ก่อให้เกิดความเสียหายหรือรบกวนลูกบ้านท่านอื่น
+  </label>
+</div>
+    
+    <button type="submit">ส่งคำร้องรีโนเวท</button>
+  </form>
+</section>
+
+<section id="tracking" class="section">
+  <h2>ติดตามงานแจ้งซ่อม</h2>
+  <p class="small-text">เมื่อส่งเรื่องแล้ว รายการจะแสดงที่นี่</p>
+<div id="caseList"></div>
+<div id="renovationList"></div>
+  </section>
+
+<section id="contact" class="section contact">
+  <h2>ติดต่อหมู่บ้าน</h2>
+  <div class="contact-grid">
+    <div>
+      <h3>รปภ.</h3>
+      <p>โทร: 082-992-2507 (คุณกิมฮวด)</p>
+      <p>     095-493-7550 (คุณติ๊ก)</p>
+      <p>     062-689-1567 (คุณไกรเดช)</p>
+    </div>
+    <div>
+      <h3>นิติบุคคล / สำนักงาน</h3>
+      <p>โทร: 095-814-3756</p>
+      <p>โทร: 02-453-9885</p>
+      <p>โทร: 061-703-4059</p>
+      <p>(ผจก.นิติ คุณริขิต)</p>
+    </div>
+    <div>
+      <h3>ไลน์นิติ</h3>
+      <p>LINE: 0992238674</p>
+    </div>
+  </div>
+</section>
