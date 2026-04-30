@@ -392,3 +392,23 @@ footer {
     border-radius: 22px;
   }
 }
+    .pagination {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+.pagination button {
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: white;
+  color: #63b3ed;
+  border: 1px solid #63b3ed;
+}
+
+.pagination button.active {
+  background: #63b3ed;
+  color: white;
+}
