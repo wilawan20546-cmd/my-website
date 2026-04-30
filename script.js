@@ -1,181 +1,154 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+<header class="topbar">
+  <div class="logo">หมู่บ้านเอื้ออาทรแสมดำ</div>
+  <nav>
+    <a href="#home">หน้าแรก</a>
+    <a href="#announcements">ประกาศ</a>
+    <a href="#repair">แจ้งซ่อม</a>
+    <a href="#tracking">ติดตามงาน</a>
+    <a href="#contact">ติดต่อ</a>
+    <a href="#renovation">คำร้องรีโนเวท</a>
+  </nav>
+</header>
 
-const firebaseConfig = {
-  apiKey: "xxx",
-  authDomain: "xxx",
-  projectId: "samaedum-web",
-  storageBucket: "xxx",
-  messagingSenderId: "xxx",
-  appId: "xxx"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-let cases = JSON.parse(localStorage.getItem("cases")) || [];
-let renovations = JSON.parse(localStorage.getItem("renovations")) || [];
-const form = document.getElementById("repairForm");
-const caseList = document.getElementById("caseList");
-
-form.addEventListener("submit", async function(event) {
-  event.preventDefault();
-
-  const name = document.getElementById("name").value;
-  const house = document.getElementById("house").value;
-  const phone = document.getElementById("phone").value;
-  const type = document.getElementById("type").value;
-  const detail = document.getElementById("detail").value;
-  
-await addDoc(collection(db, "repairs"), {
-  name: name,
-  house: house,
-  phone: phone,
-  type: type,
-  detail: detail,
-  status: "รับเรื่องแล้ว"
-});
-  form.reset();
-  loadCases();
-  alert("ส่งเรื่องเรียบร้อย!");
-});
-const renovationForm = document.getElementById("renovationForm");
-const renovationList = document.getElementById("renovationList");
-
-if (renovationForm && renovationList) {
-  renovationForm.addEventListener("submit", function(event) {
-    event.preventDefault();
-
-    const requestId = "RENO-" + Date.now().toString().slice(-5);
-
-    const name = document.getElementById("renoName").value;
-    const house = document.getElementById("renoHouse").value;
-    const phone = document.getElementById("renoPhone").value;
-    const type = document.getElementById("renoType").value;
-    const start = document.getElementById("renoStart").value;
-    const end = document.getElementById("renoEnd").value;
-    const detail = document.getElementById("renoDetail").value;
-    renovations.push({
-  id: requestId,
-  type: type,
-  status: "รอตรวจสอบคำร้อง"
-});
-
-localStorage.setItem("renovations", JSON.stringify(renovations));
-
-    const card = document.createElement("div");
-    card.className = "case-card";
-
- card.innerHTML = `
-  <div class="card-header">
-    <h3>${requestId}</h3>
-    <span class="status status-new">รอตรวจสอบคำร้อง</span>
+<section id="home" class="hero">
+  <div class="hero-content">
+    <h1>ยินดีต้อนรับสู่หมู่บ้านเอื้ออาทรแสมดำ</h1>
+    <p>ศูนย์กลางข่าวสาร ประกาศ แจ้งซ่อม และการติดต่อภายในชุมชน</p>
+    <a href="#repair" class="btn">แจ้งซ่อมตอนนี้</a>
+    
   </div>
+</section>
 
-  <p><strong>ประเภท:</strong> คำร้องรีโนเวท</p>
-  <p><strong>ประเภทงาน:</strong> ${type}</p>
-`;
-    function updateStatus(button, status) {
-  const card = button.closest(".case-card");
-  const statusEl = card.querySelector(".status");
-
-  if (status === "processing") {
-    statusEl.textContent = "กำลังดำเนินการ";
-    statusEl.className = "status status-processing";
-  }
-
-  if (status === "done") {
-    statusEl.textContent = "เสร็จสิ้น";
-    statusEl.className = "status status-done";
-  }
-}
-
-    renovationList.prepend(card);
-    renovationForm.reset();
-
-    alert("ส่งคำร้องเรียบร้อย เลขคำร้องของคุณคือ " + requestId);
-  });
-}
-function updateStatus(button, status) {
-  const card = button.closest(".case-card");
-  const statusEl = card.querySelector(".status");
-
-  if (status === "processing") {
-    statusEl.textContent = "กำลังดำเนินการ";
-    statusEl.className = "status status-processing";
-  }
-
-  if (status === "done") {
-    statusEl.textContent = "เสร็จสิ้น";
-    statusEl.className = "status status-done";
-  }
-}
-function renderCases() {
-  caseList.innerHTML = "";
-
-  cases.forEach(c => {
-    const div = document.createElement("div");
-    div.className = "case-card";
-
-    div.innerHTML = `
-      <div class="card-header">
-        <h3>${c.id}</h3>
-        <span class="status status-new">${c.status}</span>
-      </div>
-
-      <p><strong>ประเภทปัญหา:</strong> ${c.type}</p>
-    `;
-
-    caseList.prepend(div);
-  });
-}
-
-renderCases();
-renderRenovations();
-function renderRenovations() {
-  renovationList.innerHTML = "";
-
-  renovations.forEach(function(item) {
-    const div = document.createElement("div");
-    div.className = "case-card";
-
-    div.innerHTML = `
-      <div class="card-header">
-        <h3>${item.id}</h3>
-        <span class="status status-new">${item.status}</span>
-      </div>
-
-      <p><strong>ประเภท:</strong> คำร้องรีโนเวท</p>
-      <p><strong>ประเภทงาน:</strong> ${item.type}</p>
-    `;
-
-    renovationList.prepend(div);
-  });
-}
-async function loadCases() {
-  caseList.innerHTML = "";
-
-  const querySnapshot = await getDocs(collection(db, "repairs"));
-
-  querySnapshot.forEach((doc) => {
-    const data = doc.data();
-
-    const caseCard = document.createElement("div");
-    caseCard.className = "case-card";
-
-caseCard.innerHTML = `
-  <div class="card-header">
-    <h3>${doc.id.slice(0, 8)}</h3>
-    <span class="status status-new">${data.status}</span>
+<section class="section">
+  <h2>ข่าวล่าสุด</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>ประชุมลูกบ้าน</h3>
+      <p>ขอเชิญลูกบ้านเข้าร่วมประชุมประจำเดือน</p>
+    </div>
+    <div class="card">
+      <h3>กิจกรรมทำความสะอาด</h3>
+      <p>ร่วมกันดูแลพื้นที่ส่วนกลางให้น่าอยู่</p>
+    </div>
+    <div class="card">
+      <h3>แจ้งซ่อมไฟถนน</h3>
+      <p>บริเวณซอย 2 อยู่ระหว่างดำเนินการ</p>
+    </div>
   </div>
+</section>
 
-  <p><strong>ชื่อ:</strong> ${data.name}</p>
-  <p><strong>บ้าน:</strong> ${data.house}</p>
-  <p><strong>ประเภท:</strong> ${data.type}</p>
-  <p><strong>รายละเอียด:</strong> ${data.detail}</p>
-`;
+<section class="section video-section">
+  <h2>วิดีโอสาระภายในหมู่บ้าน</h2>
+  <div class="video-box">
+    <iframe 
+      src="https://www.youtube.com/embed/1KMPOOHA7xg?si=v4-VG-bP1b4rNhJt"
+      title="Village Video"
+      allowfullscreen>
+    </iframe>
+  </div>
+</section>
 
-    caseList.appendChild(caseCard);
-  });
-}
+<section id="announcements" class="section">
+  <h2>ประกาศหมู่บ้าน</h2>
+  <ul class="notice-list">
+    <li>แจ้งชำระค่าน้ำประจำเดือนภายในวันที่ 10</li>
+    <li>แจ้งชำระค่าไฟพื้นที่ส่วนกลาง</li>
+    <li>กิจกรรม Big Cleaning Day วันอาทิตย์นี้</li>
+    <li>ห้ามจอดรถกีดขวางทางเข้าออก</li>
+  </ul>
+</section>
 
-loadCases();
+<section id="repair" class="section">
+  <h2>แบบฟอร์มแจ้งซ่อม</h2>
+
+  <form id="repairForm" class="form">
+    <input type="text" id="name" placeholder="ชื่อผู้แจ้ง" required>
+    <input type="text" id="house" placeholder="บ้านเลขที่" required>
+    <input type="tel" id="phone" placeholder="เบอร์โทรศัพท์" required>
+
+    <select id="type" required>
+      <option value="">เลือกประเภทปัญหา</option>
+      <option>ไฟถนนเสีย</option>
+      <option>ท่อตัน</option>
+      <option>น้ำรั่ว</option>
+      <option>ถนนชำรุด</option>
+      <option>ขยะ / ความสะอาด</option>
+      <option>เสียงรบกวน</option>
+      <option>อื่น ๆ</option>
+    </select>
+
+    <textarea id="detail" placeholder="รายละเอียดปัญหา" required></textarea>
+
+    <button type="submit">ส่งเรื่องแจ้งซ่อม</button>
+  </form>
+</section>
+
+</section>
+<section id="renovation" class="section">
+  <h2>แบบฟอร์มคำร้องปรับปรุง / รีโนเวทห้อง</h2>
+  <p class="small-text">
+    สำหรับลูกบ้านที่ต้องการปรับปรุง ต่อเติม หรือรีโนเวทภายในห้องพัก
+  </p>
+
+  <form id="renovationForm" class="form">
+    <input type="text" id="renoName" placeholder="ชื่อผู้ยื่นคำร้อง" required>
+    <input type="text" id="renoHouse" placeholder="บ้านเลขที่ / อาคาร / ห้อง" required>
+    <input type="tel" id="renoPhone" placeholder="เบอร์โทรศัพท์" required>
+
+    <select id="renoType" required>
+      <option value="">เลือกประเภทงาน</option>
+      <option>ทาสีห้อง</option>
+      <option>ปูกระเบื้อง / พื้น</option>
+      <option>ซ่อมแซมห้องน้ำ</option>
+      <option>ติดตั้งแอร์</option>
+      <option>งานไฟฟ้า</option>
+      <option>งานประปา</option>
+      <option>ต่อเติม / กั้นห้อง</option>
+      <option>อื่น ๆ</option>
+    </select>
+
+    <input type="date" id="renoStart" required>
+    <input type="date" id="renoEnd" required>
+
+    <textarea id="renoDetail" placeholder="รายละเอียดงานที่ต้องการปรับปรุง" required></textarea>
+
+<div class="checkbox-row">
+  <input type="checkbox" id="renoAccept" required>
+  <label for="renoAccept">
+    ข้าพเจ้ารับทราบว่าต้องไม่ก่อให้เกิดความเสียหายหรือรบกวนลูกบ้านท่านอื่น
+  </label>
+</div>
+    
+    <button type="submit">ส่งคำร้องรีโนเวท</button>
+  </form>
+</section>
+
+<section id="tracking" class="section">
+  <h2>ติดตามงานแจ้งซ่อม</h2>
+  <p class="small-text">เมื่อส่งเรื่องแล้ว รายการจะแสดงที่นี่</p>
+<div id="caseList"></div>
+<div id="renovationList"></div>
+  </section>
+
+<section id="contact" class="section contact">
+  <h2>ติดต่อหมู่บ้าน</h2>
+  <div class="contact-grid">
+    <div>
+      <h3>รปภ.</h3>
+      <p>โทร: 082-992-2507 (คุณกิมฮวด)</p>
+      <p>     095-493-7550 (คุณติ๊ก)</p>
+      <p>     062-689-1567 (คุณไกรเดช)</p>
+    </div>
+    <div>
+      <h3>นิติบุคคล / สำนักงาน</h3>
+      <p>โทร: 095-814-3756</p>
+      <p>โทร: 02-453-9885</p>
+      <p>โทร: 061-703-4059</p>
+      <p>(ผจก.นิติ คุณริขิต)</p>
+    </div>
+    <div>
+      <h3>ไลน์นิติ</h3>
+      <p>LINE: 0992238674</p>
+    </div>
+  </div>
+</section>
